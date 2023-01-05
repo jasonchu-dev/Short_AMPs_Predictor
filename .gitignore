@@ -3,3 +3,6 @@ Pfeature/
 test_set/
 train_set/
 .ipynb_checkpoints/
+model.joblib
+results.csv
+

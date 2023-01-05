@@ -2,6 +2,17 @@
 
 Bio/chemoinformatics and machine learning project
 
+## Stuff needed
+* scikit-learn
+* Pfeature
+* Lazy Predict
+* pandas
+* Matplotlib
+* seaborn
+* CD-HIT
+* setuptools 58.2.0
+* Conda
+
 ## Run
 Need conda. CD-HIT and Pfeature not available on pip so must do this
 ```
