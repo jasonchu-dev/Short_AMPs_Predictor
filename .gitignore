@@ -5,4 +5,4 @@ train_set/
 .ipynb_checkpoints/
 model.joblib
 results.csv
-
+.vscode/

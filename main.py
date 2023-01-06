@@ -12,15 +12,7 @@ def aac(_input):
     return df
 
 def main(args):
-    model = joblib.load("./model.joblib")    
-    # aac_wp('test_set/po_cd_hit.txt', 'po_cd_hit.csv')
-    # aac_wp('test_set/ne_cd_hit.txt', 'ne_cd_hit.csv')
-    # test_po_df = pd.read_csv('po_cd_hit.csv')
-    # test_ne_df = pd.read_csv('ne_cd_hit.csv')
-    # y_test = [1 for i in range(test_po_df.index.stop)] + [0 for i in range(test_ne_df.index.stop)]
-    # os.remove('po_cd_hit.csv')
-    # os.remove('ne_cd_hit.csv')
-    # X_test = pd.concat([test_po_df, test_ne_df], axis=0)
+    model = joblib.load("./model.joblib")
     df = aac(args.file)
     
     # all thresholds for aac will ussually be way greater than 0.1
@@ -29,7 +21,7 @@ def main(args):
 
     df2 = df.loc[:, threshold.get_support()]
 
-    pred = model.predict(df)
+    # pred = model.predict(df)
 
     final_df = pd.DataFrame(data={'Features': df2.columns, 'Gini' : model.feature_importances_})
     final_df.sort_values(by='Gini', ascending=False, inplace=True)
