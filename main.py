@@ -20,14 +20,20 @@ def main(args):
     threshold.fit_transform(df)
 
     df2 = df.loc[:, threshold.get_support()]
-
-    # pred = model.predict(df)
+    
+    pred = model.predict(df)
+    
+    # need to find better way to map
+    model_results = ['ne' if i == 0 else 'po' for i in pred]
+    results_df = pd.DataFrame(model_results, columns=['results'])
+    
+    results_df.to_csv('results.csv', index=False)
 
     final_df = pd.DataFrame(data={'Features': df2.columns, 'Gini' : model.feature_importances_})
     final_df.sort_values(by='Gini', ascending=False, inplace=True)
     final_df.reset_index(drop=True, inplace=True)
     
-    final_df.to_csv('results.csv', index=False)
+    final_df.to_csv('features.csv', index=False)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

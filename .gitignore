@@ -6,3 +6,4 @@ train_set/
 model.joblib
 results.csv
 .vscode/
+features.csv
