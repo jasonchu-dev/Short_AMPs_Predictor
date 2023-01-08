@@ -30,6 +30,9 @@ def main():
     y_test = X_test['y']
     X_test.drop(columns='y', inplace=True)
 
+    X_test.to_csv('static/X_test.csv', index=False)
+    y_test.to_csv('static/y_test.csv', index=False)
+
     model = RandomForestClassifier(n_estimators=500)
     model.fit(X_train, y_train)
     
