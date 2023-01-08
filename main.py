@@ -12,7 +12,7 @@ def aac(_input):
     return df
 
 def main(args):
-    model = joblib.load("./model.joblib")
+    model = joblib.load("static/model.joblib")
     df = aac(args.file)
     
     # all thresholds for aac will ussually be way greater than 0.1
@@ -27,13 +27,13 @@ def main(args):
     model_results = ['ne' if i == 0 else 'po' for i in pred]
     results_df = pd.DataFrame(model_results, columns=['results'])
     
-    results_df.to_csv('results.csv', index=False)
+    results_df.to_csv('static/results.csv', index=False)
 
     final_df = pd.DataFrame(data={'Features': df2.columns, 'Gini' : model.feature_importances_})
     final_df.sort_values(by='Gini', ascending=False, inplace=True)
     final_df.reset_index(drop=True, inplace=True)
     
-    final_df.to_csv('features.csv', index=False)
+    final_df.to_csv('static/features.csv', index=False)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

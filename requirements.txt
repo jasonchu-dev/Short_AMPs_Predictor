@@ -1,0 +1,7 @@
+setuptools==58.2.0
+lazypredict
+dash
+dash-renderer
+dash-core-components
+dash-html-components
+plotly

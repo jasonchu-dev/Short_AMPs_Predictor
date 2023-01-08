@@ -36,7 +36,7 @@ def main():
     model = RandomForestClassifier(n_estimators=500)
     model.fit(X_train, y_train)
     
-    joblib.dump(model, "./model.joblib")
+    joblib.dump(model, "static/model.joblib")
 
 if __name__ == "__main__":
     main()

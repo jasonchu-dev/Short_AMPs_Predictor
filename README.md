@@ -19,8 +19,6 @@ Need conda. CD-HIT and Pfeature not available on pip so must do this
     wget https://github.com/raghavagps/Pfeature/raw/master/PyLib/Pfeature.zip
     unzip Pfeature.zip
     cd Pfeature/
-    pip install setuptools==58.2.0
-    pip install lazypredict
     python setup.py install
     conda install -c bioconda cd-hit -y
     cd ..

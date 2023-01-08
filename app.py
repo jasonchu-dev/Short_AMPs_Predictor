@@ -1,18 +1,25 @@
-from sklearn.ensemble import RandomForestClassifier
-from explainerdashboard import ClassifierExplainer, ExplainerDashboard
-from explainerdashboard.datasets import titanic_survive, feature_descriptions
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
 import pandas as pd
-import joblib
 
-model = joblib.load("./model.joblib")
+app = dash.Dash()
 
-X_test = pd.read_csv('static/X_test.csv')
-y_test = pd.read_csv('static/y_test.csv')
-y_test = y_test['y']
+df = pd.read_csv('results.csv')
 
-explainer = ClassifierExplainer(model, X_test, y_test,
-                                cats=['AAC_K', 'AAC_D', 'AAC_E'],
-                                descriptions=feature_descriptions,
-                                labels=['Negative', 'Positive'])
+app.layout = html.Div(children=[
+    html.H1('Feature Importance'),
+    dcc.Graph(id='example',
+        figure={
+            'data': [
+                {'x': df['Features'], 'y': df['Gini'], 'type': 'bar'},
+                {'x': df['Features'], 'y': df['Gini'], 'type': 'line'}
+            ],
+            'layout': {
+                'title': 'Chart'
+            }
+        })
+])
 
-ExplainerDashboard(explainer).run()
+if __name__ == '__main__':
+    app.run_server(debug=True)
