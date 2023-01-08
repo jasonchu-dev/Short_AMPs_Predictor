@@ -5,18 +5,28 @@ import pandas as pd
 
 app = dash.Dash()
 
-df = pd.read_csv('results.csv')
+df = pd.read_csv('static/features.csv')
 
 app.layout = html.Div(children=[
-    html.H1('Feature Importance'),
+    html.H1(children = 'Feature Importance',
+        style = {
+            'font-family': 'sans-serif'
+        }
+    ),
     dcc.Graph(id='example',
         figure={
             'data': [
                 {'x': df['Features'], 'y': df['Gini'], 'type': 'bar'},
-                {'x': df['Features'], 'y': df['Gini'], 'type': 'line'}
+                {'x': df['Features'], 'y': df['Gini'], 'type': 'line', 'xaxis_title': 'Features', 'yaxis_title': 'Gini'}
             ],
-            'layout': {
-                'title': 'Chart'
+            'layout':{
+                'title':'Chart',
+                'xaxis':{
+                    'title':'Features'
+                },
+                'yaxis':{
+                    'title':'Gini'
+                }
             }
         })
 ])
