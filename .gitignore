@@ -7,4 +7,5 @@ model.joblib
 results.csv
 .vscode/
 features.csv
-__pycache__
+__pycache__/
+build/

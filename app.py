@@ -35,8 +35,17 @@ app.layout = html.Div(children=[
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--file", help="first txt file")
-    args = parser.parse_args()
+    
+    parser.add_argument("-f", "--file", help="txt file (converted from fasta with CD-HIT")
 
+    args = parser.parse_args()
     predict(args)
-    app.run_server(debug=True)
+    
+    app.run_server(
+                    mode='inline', 
+                    port = 8090, 
+                    dev_tools_ui=True, 
+                    debug=True,
+                    dev_tools_hot_reload =True, 
+                    threaded=True
+                )
