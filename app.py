@@ -2,8 +2,6 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-import argparse
-from predictor import predict
 
 app = dash.Dash()
 
@@ -34,14 +32,7 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    
-    parser.add_argument("-f", "--file", help="txt file (converted from fasta with CD-HIT")
-
-    args = parser.parse_args()
-    predict(args)
-    
-    app.run_server(
+     app.run_server(
                     mode='inline', 
                     port = 8090, 
                     dev_tools_ui=True, 
