@@ -7,3 +7,4 @@ model.joblib
 results.csv
 .vscode/
 features.csv
+__pycache__

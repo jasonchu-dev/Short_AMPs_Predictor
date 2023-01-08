@@ -3,7 +3,6 @@ from sklearn.feature_selection import VarianceThreshold
 import pandas as pd
 import os
 import joblib
-import argparse
 
 def aac(_input):
     aac_wp(_input, 'aac_data.csv')
@@ -11,7 +10,7 @@ def aac(_input):
     os.remove('aac_data.csv')
     return df
 
-def main(args):
+def predict(args):
     model = joblib.load("static/model.joblib")
     df = aac(args.file)
     
@@ -34,11 +33,3 @@ def main(args):
     final_df.reset_index(drop=True, inplace=True)
     
     final_df.to_csv('static/features.csv', index=False)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    
-    parser.add_argument("-f", "--file", help="first txt file")
-
-    args = parser.parse_args()
-    main(args)
