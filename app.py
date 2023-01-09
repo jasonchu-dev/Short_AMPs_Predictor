@@ -1,11 +1,14 @@
 import dash
+from dash import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 
 app = dash.Dash()
 
-df = pd.read_csv('static/features.csv')
+features_df = pd.read_csv('static/features.csv')
+results_df = pd.read_csv('static/results.csv')
+results_df.reset_index(inplace=True)
 
 app.layout = html.Div(children=[
     html.H1(children = 'Feature Importance',
@@ -16,8 +19,8 @@ app.layout = html.Div(children=[
     dcc.Graph(id='example',
         figure={
             'data': [
-                {'x': df['Features'], 'y': df['Gini'], 'type': 'bar'},
-                {'x': df['Features'], 'y': df['Gini'], 'type': 'line', 'xaxis_title': 'Features', 'yaxis_title': 'Gini'}
+                {'x': features_df['Features'], 'y': features_df['Gini'], 'type': 'bar'},
+                {'x': features_df['Features'], 'y': features_df['Gini'], 'type': 'line', 'xaxis_title': 'Features', 'yaxis_title': 'Gini'}
             ],
             'layout':{
                 'title':'Chart',
@@ -28,16 +31,18 @@ app.layout = html.Div(children=[
                     'title':'Gini'
                 }
             }
-        })
+        }
+    ),
+    html.H1(children = 'Results',
+        style = {
+            'font-family': 'sans-serif'
+        }
+    ),
+    dash_table.DataTable(
+        data=results_df.to_dict('records'), 
+        columns=[{"name": i, "id": i} for i in results_df.columns]
+    )
 ])
 
 if __name__ == '__main__':
-    # app.run_server(
-    #                mode='inline', 
-    #                port = 8090, 
-    #                dev_tools_ui=True, 
-    #                debug=True,
-    #                dev_tools_hot_reload =True, 
-    #                threaded=True
-    #            )
     app.run_server(debug=True)
