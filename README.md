@@ -1,20 +1,12 @@
 # Short Antimicrobial Peptides Prediction
 
-Bio/chemoinformatics and machine learning project
-
-## Stuff needed
-* scikit-learn
-* Pfeature
-* Lazy Predict
-* pandas
-* Matplotlib
-* seaborn
-* CD-HIT
-* setuptools 58.2.0
-* Conda
+Bio/chemoinformatics and machine learning project. Computational drug discovery based on QSAR made with Random Forest Classifier.
 
 ## Run
-Need conda. CD-HIT and Pfeature not available on pip so must do this
+```
+    pip install -r requirements.txt
+```
+CD-HIT and Pfeature not available on pip so must do this
 ```
     wget https://github.com/raghavagps/Pfeature/raw/master/PyLib/Pfeature.zip
     unzip Pfeature.zip
@@ -30,7 +22,7 @@ Get dataset
     unzip deep-ampep30-train_set.zip
     unzip deep-ampep30-test_set.zip
 ```
-Remove duplicate peptides (latest dataset should have no duplicate data but optional)
+Remove duplicate peptides and convert to txt
 ```
     cd train_set/
     cd-hit -i train_po.fasta -o po_cd_hit.txt -c 0.99
@@ -40,4 +32,8 @@ Remove duplicate peptides (latest dataset should have no duplicate data but opti
     cd-hit -i test_po.fasta -o po_cd_hit.txt -c 0.99
     cd-hit -i test_ne.fasta -o ne_cd_hit.txt -c 0.99
     cd ..
+```
+When done, go back to lastest setuptools
+```
+    pip install --upgrade setuptools
 ```
