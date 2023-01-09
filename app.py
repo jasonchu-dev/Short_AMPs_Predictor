@@ -32,11 +32,12 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-     app.run_server(
-                    mode='inline', 
-                    port = 8090, 
-                    dev_tools_ui=True, 
-                    debug=True,
-                    dev_tools_hot_reload =True, 
-                    threaded=True
-                )
+    # app.run_server(
+    #                mode='inline', 
+    #                port = 8090, 
+    #                dev_tools_ui=True, 
+    #                debug=True,
+    #                dev_tools_hot_reload =True, 
+    #                threaded=True
+    #            )
+    app.run_server(debug=True)
